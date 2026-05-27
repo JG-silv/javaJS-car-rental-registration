@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Locadora - Cadastro</title>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="css/styles.css">
+  <script src="js/ibge.js" defer></script>
+  <script src="js/scripts.js" defer></script>
+<meta name="author" content="José">
+</head>
+
+<body>
+  <div class="container">
+    <center><img src="public/logo.jpg" alt="Logo" style="width: 220px; border-radius: 20px;"></center>
+    <h1>Cadastro Locação</h1>
+
+    <div class="barra">
+      <div class="barra-preenchida" id="barra"></div>
+    </div>
+    <!--Parte de Cadastro do Usuário-->
+    <div class="input-row">
+      <input type="text" id="nome" placeholder="Nome do Locador" onblur="formatarName(this)"
+        onchange="atualizarBarra()" />
+      <input type="text" id="cpf" placeholder="CPF" onblur="formatarCPF(this)" maxlength="14"
+        onchange="atualizarBarra()" />
+    </div>
+
+    <div class="input-row">
+
+      <input type="text" id="father" placeholder="Nome do Pai" onblur="formatarName(this)"
+        onchange="atualizarBarra()" />
+      <input type="text" id="mom" placeholder="Nome da Mãe" onblur="formatarName(this)" onchange="atualizarBarra()" />
+    </div>
+
+    <div class="input-row"><!--Placa e Seguro do Veiculo-->
+      <input type="text" id="placa" placeholder="Placa do Veículo" onblur="formatarPlaca(this)" maxlength="7"
+        onchange="atualizarBarra()" />
+      <select id="cor" onchange="atualizarBarra()">
+        <option value="">Seguro do Veículo</option>
+        <option>Básico</option>
+        <option>Intermediário</option>
+        <option>Completo</option>
+        <option>Premium</option>
+      </select>
+    </div>
+
+    <div class="input-row"><!--Categorias do Carro-->
+      <select id="categoria" onchange="atualizarModelos(); atualizarBarra()">
+        <option value="">Categoria do Carro</option>
+        <option value="A">A - SUV</option>
+        <option value="B">B - Populares</option>
+        <option value="C">C - Compactos</option>
+      </select>
+      <select id="modelo" onchange="atualizarBarra()">
+        <option value="">Selecione a Categoria</option>
+      </select>
+    </div>
+
+    <div class="input-row uf-layout"><!--Unidades Federativas do Brasil Inteiras-->
+      <div class="input-group uf-select-group">
+        <label for="uf">UF (IBGE)</label>
+        <select id="uf" onchange="atualizarBarra()">
+          <option value="">Carregando UFs...</option>
+        </select>
+        <p id="ufStatus" class="uf-status">Buscando estados diretamente da API do IBGE.</p>
+      </div>
+      <div class="input-group uf-map-group">
+        <div id="ufMapaPreview" class="uf-mapa" aria-live="polite">
+          <p>Selecione uma UF para carregar a malha simplificada do IBGE.</p>
+        </div>
+      </div>
+    </div>
+    <div class="input-row">
+      <select id="acessorios" onchange="atualizarBarra()">
+        <option value="">Acessorios Adcionais</option>
+        <option>Carrinho de Criança</option>
+        <option>GPS e Wi-Fi</option>
+        <option>Viagem com Pets</option>
+      </select>
+    </div>
+    <br>
+    <div class="input-row">
+      <label for="">Data de Retirada:</label>
+      <input type="date" id="dataRetirada" onchange="atualizarBarra()" />
+      <label for="">Data de Devolução:</label>
+      <input type="date" id="dataDevolucao" onchange="atualizarBarra()" />
+    </div>
+
+    <br>
+    <button onclick="cadastrar()" onchange="verificarBarra()">Cadastrar</button>
+    <div id="resultado"></div>
+    <ul id="listaClientes"></ul>
+  </div>
+
+  <br><br>
+  <!--Parte de Login do Usuário Cadastrado-->
+  <div class="container">
+    <h2>Login Locadora</h2>
+    <div class="input-group">
+      <input type="text" id="cpfLogin" placeholder="CPF" onblur="formatarCPF(this)" maxlength="14" />
+      <input type="text" id="placaLogin" placeholder="Placa do Veículo" onblur="formatarPlaca(this)" maxlength="7" />
+    </div>
+    <br />
+    <button onclick="login()">Login</button>
+    <div id="resultadoLogin"></div>
+  </div>
+</body>
+
+</html>
