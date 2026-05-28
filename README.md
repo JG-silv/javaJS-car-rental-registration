@@ -86,6 +86,6 @@ http://localhost:8000/pages/locterCars.html
 - A API do IBGE é usada para mapas e listagem de estados.
 
 ## Autor
-
+José - JG-silv
 Projeto desenvolvido como aplicação web front-end com integração externa e armazenamento local.
 #
